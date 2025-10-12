@@ -8,14 +8,15 @@ import Sidebar from './components/Layout/Sidebar';
 // Page Components
 import Dashboard from './pages/Dashboard';
 import HotelManagement from './pages/HotelManagement';
-import RoomManagement from './pages/RoomManagement';     // NEW
+import RoomManagement from './pages/RoomManagement';     
 import BookingManagement from './pages/BookingManagement';
 import CustomerManagement from './pages/CustomerManagement';
-import UserManagement from './pages/UserManagement';       // NEW
+import UserManagement from './pages/UserManagement';       
 import ReportsAnalytics from './pages/ReportsAnalytics';
 import Settings from './pages/Settings';
 import PricingOffers from './pages/PricingOffers';
 import PaymentsFinance from './pages/PaymentsFinance';
+import CreateBooking from './pages/CreateBooking'; 
 
 const drawerWidth = 240;
 
@@ -29,23 +30,6 @@ const PlaceholderPage = ({ title }) => (
     </Box>
 );
 
-/**
- * Mapping of sidebar paths to their corresponding React components.
- */
-const pageMap = {
-    '/dashboard': <Dashboard />,
-    '/hotels': <HotelManagement />,
-    '/rooms': <RoomManagement />,     
-    '/bookings': <BookingManagement />,
-    '/customers': <CustomerManagement />,
-    '/users': <UserManagement />,     
-    '/pricing': <PricingOffers />,
-    '/finance': <PaymentsFinance />,
-    '/reports': <ReportsAnalytics />,
-    '/settings': <Settings />,
-    '/': <Dashboard />, 
-};
-
 
 export default function App() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -56,9 +40,30 @@ export default function App() {
   };
   
   const handlePageChange = (path) => {
+    // IMPORTANT: Adding console log here to verify the function is called
+    console.log("Navigating to:", path); 
     setCurrentPage(path);
     setMobileOpen(false); 
   }
+
+  // --- FIX: pageMap DEFINED INSIDE APP() ---
+  // This allows us to pass the handlePageChange function to Dashboard.
+  const pageMap = {
+      '/dashboard': <Dashboard onNavigate={handlePageChange} />, // NOW PASSES PROP
+      '/hotels': <HotelManagement />,
+      '/rooms': <RoomManagement />,     
+      '/bookings': <BookingManagement />,
+      '/customers': <CustomerManagement />,
+      '/users': <UserManagement />,     
+      '/pricing': <PricingOffers />,
+      '/finance': <PaymentsFinance />,
+      '/reports': <ReportsAnalytics />,
+      '/settings': <Settings />,
+      '/create-booking': <CreateBooking />,
+      '/': <Dashboard onNavigate={handlePageChange} />, // NOW PASSES PROP
+  };
+  // --- END FIX ---
+
 
   return (
     <Box sx={{ display: 'flex' }}>

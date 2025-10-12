@@ -7,7 +7,11 @@ import HourlyTrendChart from '../components/Dashboard/HourlyTrendChart';
 import RecentBookings from '../components/Dashboard/RecentBookings';
 import { dashboardData } from '../data/dummyData';
 
-export default function Dashboard() {
+// 1. ACCEPT the navigation function as a prop named 'onNavigate'
+export default function Dashboard({ onNavigate }) {
+    
+    // REMOVED: const navigate = (); // This line was the syntax error and is not needed.
+
     return (
         <Box>
             
@@ -18,17 +22,23 @@ export default function Dashboard() {
                 justifyContent="space-between" 
                 alignItems={{ xs: 'flex-start', sm: 'center' }} 
                 mb={3} 
-                gap={2} // Adds space between title and button on mobile
+                gap={2}
             >
                 <Typography variant="h4" gutterBottom>
                     Super Admin Dashboard
                 </Typography>
-                <Button variant="contained" color="primary" startIcon={<AddIcon />}>
+                <Button 
+                    variant="contained" 
+                    color="primary" 
+                    startIcon={<AddIcon />}
+                    // 2. Use the passed prop 'onNavigate' to switch to the booking form
+                    onClick={() => onNavigate('/create-booking')} 
+                >
                     Create New Booking
                 </Button>
             </Box>
 
-            {/* 1. KPI Cards: 1 column on xs, 2 columns on sm, 4 columns on lg */}
+            {/* 1. KPI Cards */}
             <Grid container spacing={3} mb={4}>
                 {dashboardData.kpis.map((kpi, index) => (
                     <Grid item xs={12} sm={6} lg={3} key={index}>
@@ -37,7 +47,7 @@ export default function Dashboard() {
                 ))}
             </Grid>
 
-            {/* 2. Charts & Analytics: Stack vertically on xs/sm, side-by-side on lg */}
+            {/* 2. Charts & Analytics */}
             <Grid container spacing={3} mb={4}>
                 <Grid item xs={12} lg={6}>
                     <RevenueChart />

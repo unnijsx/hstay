@@ -2,7 +2,7 @@ import { createTheme } from '@mui/material/styles';
 
 const primaryColor = '#8A5CFF';
 const secondaryColor = '#FFC107'; // Using a complementary yellow/amber for highlights (from the logo)
-const backgroundColor = '#1A237E'; // Darker blue for background contrast
+const backgroundColor = '#000000ff'; // Darker blue for background contrast
 
 export const customTheme = createTheme({
   palette: {

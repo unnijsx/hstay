@@ -60,29 +60,30 @@ export const hotelData = [
         name: 'Airport Inn Hub', 
         city: 'Mumbai', 
         rooms: 30, 
-        status: 'Active', 
-        occupancy: 0.60, 
-        rating: 4.1 
+        status: 'Pending Approval', // Changed status
+        occupancy: 0.00, // No occupancy yet
+        rating: 0.0 // No rating yet
     },
     { 
         id: 3, 
         name: 'Downtown Suites', 
         city: 'Bangalore', 
         rooms: 72, 
-        status: 'Pending', 
+        status: 'Active', 
         occupancy: 0.90, 
         rating: 4.8 
     },
     { 
         id: 4, 
-        name: 'Tech Park Lodge', 
-        city: 'Bangalore', 
+        name: 'Newcomer Lodge', // New hotel name for clarity
+        city: 'Chennai', 
         rooms: 20, 
-        status: 'Active', 
-        occupancy: 0.55, 
-        rating: 3.9 
+        status: 'Pending Approval', // Changed status
+        occupancy: 0.00, 
+        rating: 0.0
     },
 ];
+
 
 // --- Booking Management Data (extended from dashboard) ---
 export const bookingData = [
